@@ -1,0 +1,95 @@
+[1mdiff --git a/.github/steps/-step.txt b/.github/steps/-step.txt[m
+[1mindex d00491f..0cfbf08 100644[m
+[1m--- a/.github/steps/-step.txt[m
+[1m+++ b/.github/steps/-step.txt[m
+[36m@@ -1 +1 @@[m
+[31m-1[m
+[32m+[m[32m2[m
+[1mdiff --git a/.github/workflows/welcome.yml b/.github/workflows/welcome.yml[m
+[1mindex b5d610f..b1afb34 100644[m
+[1m--- a/.github/workflows/welcome.yml[m
+[1m+++ b/.github/workflows/welcome.yml[m
+[36m@@ -3,10 +3,4 @@[m [mon:[m
+   pull_request:[m
+     types: [opened][m
+ permissions:[m
+[31m-  pull-requests: write[m
+[31m-jobs:[m
+[31m-  welcome:[m
+[31m-    runs-on: ubuntu-latest[m
+[31m-    steps:[m
+[31m-      - name: Post welcome comment[m
+[31m-        run: echo "Welcome to the repository! Thank you for your pull request."[m
+[32m+[m[32m  pull-requests: write[m
+\ No newline at end of file[m
+[1mdiff --git a/README.md b/README.md[m
+[1mindex e8605a8..7df0050 100644[m
+[1m--- a/README.md[m
+[1m+++ b/README.md[m
+[36m@@ -6,34 +6,27 @@[m [m_Create and run a GitHub Actions workflow._[m
+ [m
+ </header>[m
+ [m
+[31m-## Step 1: Create a workflow file[m
+[32m+[m[32m## Step 2: Add a job to your workflow file[m
+ [m
+[31m-_Welcome to "Hello GitHub Actions"! :wave:_[m
+[32m+[m[32m_Nice work! :tada: You added a workflow file!_[m
+ [m
+[31m-**What is _GitHub Actions_?**: GitHub Actions is a flexible way to automate nearly every aspect of your team's software workflow. You can automate testing, continuously deploy, review code, manage issues and pull requests, and much more. The best part, these workflows are stored as code in your repository and easily shared and reused across teams. To learn more, check out these resources:[m
+[32m+[m[32mHere's what the entries in the `welcome.yml` file, on the `welcome-workflow` branch, mean:[m
+ [m
+[31m-- The GitHub Actions feature page, see [GitHub Actions](https://github.com/features/actions).[m
+[31m-- The "GitHub Actions" user documentation, see [GitHub Actions](https://docs.github.com/actions).[m
+[32m+[m[32m- `name: Post welcome comment` gives your workflow a name. This name will appear in the Actions tab of your repository.[m
+[32m+[m[32m- `on: pull_request: types: [opened]` indicates that your workflow will execute whenever someone opens a pull request in your repository.[m
+[32m+[m[32m- `permissions` assigns the workflow permissions to operate on the repository[m
+[32m+[m[32m- `pull-requests: write` gives the workflow permission to write to pull requests. This is needed to create the welcome comment.[m
+ [m
+[31m-**What is a _workflow_?**: A workflow is a configurable automated process that will run one or more jobs. Workflows are defined in special files in the `.github/workflows` directory and they execute based on your chosen event. For this exercise, we'll use a `pull_request` event.[m
+[32m+[m[32mNext, we need to specify jobs to run.[m
+ [m
+[31m-- To read more about workflows, jobs, and events, see "[Understanding GitHub Actions](https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions)".[m
+[31m-- If you want to learn more about the `pull_request` event before using it, see "[pull_request](https://docs.github.com/en/developers/webhooks-and-events/webhooks/webhook-events-and-payloads#pull_request)".[m
+[32m+[m[32m**What is a _job_?**: A job is a set of steps in a workflow that execute on the same runner (a runner is a server that runs your workflows when triggered). Workflows have jobs, and jobs have steps. Steps are executed in order and are dependent on each other. You'll add steps to your workflow later in the course. To read more about jobs, see "[Jobs](https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions#jobs)".[m
+ [m
+[31m-To get you started, we ran an Actions workflow in your new repository that, among other things, created a branch for you to work in, called `welcome-workflow`.[m
+[32m+[m[32mIn the following activity, you'll add a "build" job to your workflow. You'll specify `ubuntu-latest` as the fastest, and cheapest, job runner available. If you want to read more about why we'll use that runner, see the code explanation for the line `runs-on: ubuntu-latest` in the "[Understanding the workflow file](https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions#understanding-the-workflow-file)" article.[m
+ [m
+[31m-### :keyboard: Activity: Create a workflow file[m
+[32m+[m[32m### :keyboard: Activity: Add a job to your workflow file[m
+ [m
+[31m-1. Open a new browser tab, and navigate to this same repository. Then, work on the steps in your second tab while you read the instructions in this tab.[m
+[31m-1. Create a pull request. This will contain all of the changes you'll make throughout this part of the course.[m
+[31m-[m
+[31m-   Click the **Pull Requests** tab, click **New pull request**, set `base: main` and `compare:welcome-workflow`, click **Create pull request**, then click **Create pull request** again.[m
+[31m-[m
+[31m-1. Navigate to the **Code** tab.[m
+[31m-1. From the **main** branch dropdown, click on the **welcome-workflow** branch.[m
+[31m-1. Navigate to the `.github/workflows/` folder, then select **Add file** and click on **Create new file**.[m
+[31m-1. In the **Name your file** field, enter `welcome.yml`.[m
+[31m-1. Add the following content to the `welcome.yml` file:[m
+[32m+[m[32m1. In a separate browser tab, make sure you are on the `welcome-workflow` branch and open your `.github/workflows/welcome.yml` file.[m
+[32m+[m[32m1. Edit the file and update its contents to:[m
+ [m
+    ```yaml copy[m
+    name: Post welcome comment[m
+[36m@@ -42,11 +35,15 @@[m [mTo get you started, we ran an Actions workflow in your new repository that, amon[m
+        types: [opened][m
+    permissions:[m
+      pull-requests: write[m
+[32m+[m[32m   jobs:[m
+[32m+[m[32m     build:[m
+[32m+[m[32m       name: Post welcome comment[m
+[32m+[m[32m       runs-on: ubuntu-latest[m
+    ```[m
+ [m
+[31m-1. To commit your changes, click **Commit changes**.[m
+[31m-1. Type a commit message, select **Commit directly to the welcome-workflow branch** and click **Commit changes**.[m
+[31m-1. Wait about 20 seconds, then refresh this page (the one you're following instructions from). A separate Actions workflow in the repository (not the workflow you created) will run and will automatically replace the contents of this README file with instructions for the next step.[m
+[32m+[m[32m1. Click **Commit changes** in the top right of the workflow editor.[m
+[32m+[m[32m1. Type a commit message and commit your changes directly to the `welcome-workflow` branch.[m
+[32m+[m[32m1. Wait about 20 seconds, then refresh this page (the one you're following instructions from). Another workflow will run and will replace the contents of this README file with instructions for the next step.[m
+ [m
+ <footer>[m
+ [m
